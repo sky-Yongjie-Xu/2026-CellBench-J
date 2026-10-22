@@ -1,0 +1,18 @@
+program: main.py
+parameters:
+  dataset_name:
+    values:
+    - pbmc12k
+    - hPancreas
+    - cortex
+    - ms
+    - liver
+    - Zheng68k
+    - lung
+    - immune
+  task:
+    values:
+    - clustering
+  cfgs:
+    values:
+    - ./configs/nicheformer.yaml

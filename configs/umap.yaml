@@ -1,0 +1,56 @@
+data_cfg:
+  dataset_name: pbmc12k
+  data_path: datasets
+  root_path: datasets
+  num_workers: 1
+  task: "annotation"
+  split_field: "split"
+  spilt_name: ["train", "test", "vaild"]
+  label_fields: ["celltype"]
+  covariate_fields: 
+  ensembl_auto_conversion: True
+  hvg: 3000
+  test_dataset_name: pbmc12k
+
+model_cfg:
+  model: UMAP
+  tasks: "cluster"
+  pretrain_prefix: 20230926_85M
+  overwrite_config:
+    drop_node_rate: 0.3
+    dec_layers: 1
+    model_dropout: 0.5
+    mask_node_rate: 0.75
+    mask_feature_rate: 0.25
+    dec_mod: mlp
+    latent_mod: ae
+    max_batch_size: 70000
+    out_dim: 18
+    head_type: annotation # embedder
+  pretrain_directory: weights/CellPLM
+
+trainer_cfg:
+  enable_float16: true
+  with_test: false
+  fix_BN: false
+  log_iter: 100
+  restore_ckpt_strict: true
+  optimizer_reset: false
+  scheduler_reset: false
+  restore_hint: 0
+  save_iter: 2000
+  save_name: tmp
+  sync_BN: false
+  total_iter: 80000
+  sampler:
+    batch_shuffle: false
+    batch_size:
+      - 8
+      - 16
+    frames_num_fixed: 30
+    frames_num_max: 50
+    frames_num_min: 25
+    sample_type: fixed_unordered
+    type: TripletSampler
+  transform:
+      - type: BaseSilCuttingTransform

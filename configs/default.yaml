@@ -1,0 +1,79 @@
+output_dir: output
+
+data_cfg:
+  dataset_name: pbmc12k
+  data_path: datasets
+  root_path: datasets
+  # UC: patient batch by default; alternatives are batch_h (health) / batch_l (location).
+  dataset_batch_keys:
+    uc_epi: batch_p
+    uc_imm: batch_p
+    uc_imm1: batch_p
+  dataset_label_keys: {}
+  num_workers: 1
+  task: "clustering"
+  split_field: "split"
+  spilt_name: ["train", "test", "vaild"]
+  label_fields: ["celltype"]
+  covariate_fields:
+  ensembl_auto_conversion: True
+  hvg: 3000
+  test_dataset_name: pbmc12k
+
+model_cfg:
+  model: CellPLM
+  tasks: "annotation"
+
+trainer_cfg:
+  enable_float16: true
+  with_test: false
+  fix_BN: false
+  log_iter: 100
+  restore_ckpt_strict: true
+  optimizer_reset: false
+  scheduler_reset: false
+  restore_hint: 0
+  save_iter: 2000
+  save_name: tmp
+  sync_BN: false
+  total_iter: 80000
+  sampler:
+    batch_shuffle: false
+    batch_size:
+      - 8
+      - 16
+    frames_num_fixed: 30
+    frames_num_max: 50
+    frames_num_min: 25
+    sample_type: fixed_unordered
+    type: TripletSampler
+  transform:
+      - type: BaseSilCuttingTransform
+
+evaluator_cfg:
+  enable_float16: false
+  restore_ckpt_strict: true
+  restore_hint: 80000
+  save_name: tmp
+  eval_func: evaluate_indoor_dataset
+  sampler:
+    batch_size: 4
+    sample_type: all_ordered
+    type: InferenceSampler
+  transform:
+      - type: BaseSilCuttingTransform
+  metric: euc # cos
+  cross_view_gallery: false
+
+# Metric protocol v2. No raw-scale AvgGR/AvgPP composites.
+evaluation_cfg:
+  clustering_mode: fixed
+  clustering_resolution: 1.0
+  n_neighbors: 15
+  correction_mode: harmony
+  compute_kbet: true
+  strict_optional_metrics: false
+  reconstruction_top_k: 50
+  perturbation_top_k: 50
+  min_effect: 0.0
+  vcc_threads: 1

@@ -1,0 +1,22 @@
+program: main.py
+parameters:
+  dataset_name:
+    values:
+    - rgc
+    - celegan
+    - uc_epi
+    - uc_imm
+  task:
+    values:
+    - embedding_extraction
+  cfgs:
+    values:
+    - ./configs/pca.yaml
+    - ./configs/umap.yaml
+    - ./configs/scvi.yaml
+    - ./configs/geneformer.yaml
+    - ./configs/langcell.yaml
+    - ./configs/scfoundation.yaml
+    - ./configs/cellplm.yaml
+    - ./configs/scgpt.yaml
+    - ./configs/scmulan.yaml

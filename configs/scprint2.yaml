@@ -1,0 +1,70 @@
+data_cfg:
+  dataset_name: pbmc12k
+  data_path: datasets
+  root_path: datasets
+  num_workers: 1
+  split_field: split
+  spilt_name:
+  - train
+  - test
+  - vaild
+  label_fields:
+  - celltype
+  covariate_fields: null
+  ensembl_auto_conversion: true
+  hvg: 3000
+  test_dataset_name: pbmc12k
+model_cfg:
+  model: scPRINT2
+  tasks: embedding_extraction
+  variant: small-v2
+  weights_dir: weights/scPRINT2
+  source_dir: public_code/scPRINT2
+  backend_python: runtime_envs/scprint2/bin/python
+  backend_device: auto
+  inference_batch_size: 1
+  inference_chunk_size: 256
+  expression_layer: auto
+  max_length: 2000
+  organism: NCBITaxon:9606
+  use_knn: false
+trainer_cfg:
+  enable_float16: true
+  with_test: false
+  fix_BN: false
+  log_iter: 100
+  restore_ckpt_strict: true
+  optimizer_reset: false
+  scheduler_reset: false
+  restore_hint: 0
+  save_iter: 2000
+  save_name: tmp
+  sync_BN: false
+  total_iter: 80000
+  sampler:
+    batch_shuffle: false
+    batch_size:
+    - 8
+    - 16
+    frames_num_fixed: 30
+    frames_num_max: 50
+    frames_num_min: 25
+    sample_type: fixed_unordered
+    type: TripletSampler
+  transform:
+  - type: BaseSilCuttingTransform
+evaluator_cfg:
+  enable_float16: false
+  restore_ckpt_strict: true
+  restore_hint: 80000
+  save_name: tmp
+  eval_func: evaluate_indoor_dataset
+  sampler:
+    batch_size: 4
+    sample_type: all_ordered
+    type: InferenceSampler
+  transform:
+  - type: BaseSilCuttingTransform
+  metric: euc
+  cross_view_gallery: false
+output_dir: output

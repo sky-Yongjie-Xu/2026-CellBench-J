@@ -1,0 +1,54 @@
+\begin{table*}[htbp]
+
+  \centering
+
+  \renewcommand\arraystretch{1.1}
+
+  \scriptsize
+
+  \caption{Performance of various models on gene reconstruction task. Metrics grouped by MSE (↓) and Pearson (↑), with results reported across Top100/500/1000/5000, and the mean.}
+
+  \label{tab:topk_grouped_metric}
+
+  \setlength{\tabcolsep}{4pt}
+
+  \begin{tabular}{cl|ccccc|ccccc}
+
+    \toprule
+    \multirow{2}{*}{Dataset} & \multirow{2}{*}{Model}
+      & \multicolumn{5}{c|}{MSE ↓}
+      & \multicolumn{5}{c}{Pearson ↑} \\
+    \cmidrule(lr){3-7} \cmidrule(lr){8-12}
+     & & Top100 & Top500 & Top1000 & Top5000 & Mean
+       & Top100 & Top500 & Top1000 & Top5000 & Mean \\
+    \midrule
+
+    \multirow{9}{*}{hPancreas}
+
+    & PCA      & \cellcolor{gray!25}0.061$\pm$0.003 & \cellcolor{gray!25}0.049$\pm$0.002 & \cellcolor{gray!25}0.048$\pm$0.002 & \cellcolor{gray!25}0.047$\pm$0.002 & \cellcolor{gray!25}0.051      & \cellcolor{gray!25}0.656$\pm$0.008 & \cellcolor{gray!25}0.729$\pm$0.004 & \cellcolor{gray!25}0.738$\pm$0.005 & \cellcolor{gray!25}0.740$\pm$0.003 & \cellcolor{gray!25}0.716 \\
+    & umap      & 0.084$\pm$0.002 & 0.074$\pm$0.002 & 0.073$\pm$0.002 & 0.072$\pm$0.002 & 0.075      & 0.515$\pm$0.011 & 0.570$\pm$0.010 & 0.577$\pm$0.006 & 0.585$\pm$0.007 & 0.562 \\
+    & SCVI      & 0.074$\pm$0.003 & 0.063$\pm$0.002 & 0.062$\pm$0.003 & 0.060$\pm$0.002 & 0.065      & 0.572$\pm$0.013 & 0.614$\pm$0.007 & 0.626$\pm$0.006 & 0.636$\pm$0.005 & 0.612 \\
+    & CellPLM      & 0.082$\pm$0.003 & 0.072$\pm$0.002 & 0.070$\pm$0.002 & 0.070$\pm$0.002 & 0.074      & 0.504$\pm$0.007 & 0.555$\pm$0.005 & 0.571$\pm$0.006 & 0.575$\pm$0.009 & 0.551 \\
+    & Geneformer      & 0.095$\pm$0.003 & 0.084$\pm$0.003 & 0.081$\pm$0.003 & 0.080$\pm$0.003 & 0.085      & 0.462$\pm$0.009 & 0.515$\pm$0.006 & 0.528$\pm$0.007 & 0.533$\pm$0.007 & 0.509 \\
+    & LangCell      & 0.098$\pm$0.003 & 0.082$\pm$0.002 & 0.080$\pm$0.003 & 0.079$\pm$0.002 & 0.085      & 0.437$\pm$0.012 & 0.498$\pm$0.010 & 0.511$\pm$0.010 & 0.519$\pm$0.010 & 0.491 \\
+    & scGPT      & 0.087$\pm$0.003 & 0.075$\pm$0.002 & 0.073$\pm$0.002 & 0.072$\pm$0.003 & 0.077      & 0.494$\pm$0.009 & 0.551$\pm$0.006 & 0.563$\pm$0.007 & 0.570$\pm$0.009 & 0.545 \\
+    & \cellcolor{gray!25}\textbf{scMulan}      & 0.079$\pm$0.004 & 0.064$\pm$0.003 & 0.061$\pm$0.003 & 0.060$\pm$0.003 & 0.066      & 0.567$\pm$0.013 & 0.643$\pm$0.007 & 0.657$\pm$0.006 & 0.667$\pm$0.008 & 0.633 \\
+    & \cellcolor{gray!25}\textbf{scFoundation}      & 0.077$\pm$0.003 & 0.062$\pm$0.003 & 0.060$\pm$0.002 & 0.058$\pm$0.003 & 0.064      & 0.556$\pm$0.015 & 0.627$\pm$0.004 & 0.640$\pm$0.007 & 0.650$\pm$0.009 & 0.618 \\
+    \midrule
+
+    \multirow{9}{*}{PBMC12k}
+
+    & PCA      & \cellcolor{gray!25}0.374$\pm$0.003 & 0.311$\pm$0.001 & 0.302$\pm$0.002 & 0.296$\pm$0.001 & 0.321      & \cellcolor{gray!25}0.845$\pm$0.001 & 0.873$\pm$0.001 & 0.877$\pm$0.001 & 0.880$\pm$0.000 & 0.869 \\
+    & umap      & 0.461$\pm$0.003 & 0.440$\pm$0.002 & 0.437$\pm$0.002 & 0.434$\pm$0.002 & 0.443      & 0.803$\pm$0.002 & 0.811$\pm$0.001 & 0.812$\pm$0.001 & 0.814$\pm$0.001 & 0.810 \\
+    & SCVI      & 0.433$\pm$0.002 & 0.398$\pm$0.002 & 0.394$\pm$0.001 & 0.391$\pm$0.001 & 0.404      & 0.816$\pm$0.001 & 0.831$\pm$0.001 & 0.833$\pm$0.001 & 0.834$\pm$0.001 & 0.828 \\
+    & CellPLM      & 0.419$\pm$0.002 & 0.398$\pm$0.002 & 0.395$\pm$0.002 & 0.392$\pm$0.002 & 0.401      & 0.822$\pm$0.001 & 0.831$\pm$0.001 & 0.832$\pm$0.001 & 0.834$\pm$0.001 & 0.830 \\
+    & Geneformer      & 0.468$\pm$0.003 & 0.430$\pm$0.002 & 0.426$\pm$0.001 & 0.423$\pm$0.002 & 0.437      & 0.802$\pm$0.001 & 0.817$\pm$0.001 & 0.819$\pm$0.001 & 0.820$\pm$0.001 & 0.815 \\
+    & LangCell      & 0.487$\pm$0.003 & 0.437$\pm$0.002 & 0.430$\pm$0.002 & 0.424$\pm$0.002 & 0.444      & 0.792$\pm$0.002 & 0.813$\pm$0.001 & 0.816$\pm$0.002 & 0.819$\pm$0.001 & 0.810 \\
+    & scGPT      & 0.441$\pm$0.002 & 0.406$\pm$0.001 & 0.402$\pm$0.002 & 0.398$\pm$0.002 & 0.412      & 0.812$\pm$0.001 & 0.827$\pm$0.001 & 0.829$\pm$0.000 & 0.831$\pm$0.000 & 0.825 \\
+    & \cellcolor{gray!25}\textbf{scMulan}      & 0.377$\pm$0.002 & \cellcolor{gray!25}0.290$\pm$0.001 & \cellcolor{gray!25}0.275$\pm$0.001 & \cellcolor{gray!25}0.263$\pm$0.001 & \cellcolor{gray!25}0.301      & 0.842$\pm$0.001 & \cellcolor{gray!25}0.881$\pm$0.001 & \cellcolor{gray!25}0.888$\pm$0.001 & \cellcolor{gray!25}0.893$\pm$0.001 & \cellcolor{gray!25}0.876 \\
+    & \cellcolor{gray!25}\textbf{scFoundation}      & 0.405$\pm$0.002 & 0.359$\pm$0.002 & 0.347$\pm$0.002 & 0.338$\pm$0.002 & 0.362      & 0.830$\pm$0.001 & 0.850$\pm$0.001 & 0.856$\pm$0.001 & 0.860$\pm$0.001 & 0.849 \\
+    \midrule
+
+    \bottomrule
+  \end{tabular}
+\end{table*}

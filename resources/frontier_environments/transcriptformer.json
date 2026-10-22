@@ -1,0 +1,13 @@
+{
+  "python": "3.11.15 (main, Apr  7 2026, 20:48:58) [Clang 22.1.1 ]",
+  "executable": "/home/xuyongjie/.cache/cellbench/runtime_envs/transcriptformer/bin/python",
+  "packages": {
+    "torch": "2.5.1+cpu",
+    "numpy": "2.2.6",
+    "anndata": "0.11.4",
+    "scanpy": "1.11.2",
+    "pytorch-lightning": "2.5.1",
+    "transcriptformer": "0.6.1",
+    "pyarrow": "26.0.0"
+  }
+}

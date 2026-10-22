@@ -1,0 +1,6 @@
+data_path: /root/commusim/data/DARLIN/DARLIN.h5ad
+label_key: "cell_type"
+normalize: false
+transform: null
+batch_size: 32
+shuffle: false

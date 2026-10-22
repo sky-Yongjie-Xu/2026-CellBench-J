@@ -1,0 +1,12 @@
+program: main.py
+parameters:
+  dataset_name:
+    values:
+    - uc_epi
+    - uc_imm
+  task:
+    values:
+    - correction
+  cfgs:
+    values:
+    - ./configs/nicheformer.yaml

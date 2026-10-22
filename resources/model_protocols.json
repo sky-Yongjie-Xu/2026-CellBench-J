@@ -1,0 +1,287 @@
+[
+  {
+    "model": "CellPLM",
+    "config": "configs/cellplm.yaml",
+    "adapter": "bio/models/adapters/cellplm.py",
+    "consistency": "native_api",
+    "protocol": "官方完整潜在层与零样本 Pipeline；仅增加 CPU 加载及骨干完整性检查。",
+    "differences": [
+      "去掉原先把 gmvae 改为 ae、修改 decoder/dropout 的覆盖。",
+      "固定本地 HGNC 匹配；官方默认在线匹配可有差异。"
+    ],
+    "references": [
+      "public_code/CellPLM/CellPLM/pipeline/__init__.py",
+      "public_code/CellPLM/CellPLM/pipeline/cell_embedding.py"
+    ],
+    "stages": {
+      "data": "全基因计数、官方 common_preprocess，禁止重改潜在层配置",
+      "loading": "官方 OmicsFormer + EmbedderHead；CPU 加载端口",
+      "embedding": "官方 CellEmbeddingPipeline.predict，保留顺序"
+    }
+  },
+  {
+    "model": "Geneformer",
+    "config": "configs/geneformer.yaml",
+    "adapter": "bio/models/adapters/geneformer.py",
+    "consistency": "protocol_port",
+    "protocol": "V1 30M 排名编码、BertForMaskedLM、倒数第二层非 padding 均值。",
+    "differences": [
+      "使用本地 in-memory tokenizer 端口；不声称与所有新版本 tokenizer 字节级相同。",
+      "保留 cell_id；移除随机分类头作为预训练骨干的加载方式。"
+    ],
+    "references": [
+      "public_code/Geneformer/geneformer/tokenizer.py",
+      "public_code/Geneformer/geneformer/emb_extractor.py"
+    ],
+    "stages": {
+      "data": "V1 计数/总量/中位数排名编码，保留源行 ID",
+      "loading": "BertForMaskedLM，检查未初始化参数",
+      "embedding": "倒数第二层、非 padding 均值"
+    }
+  },
+  {
+    "model": "LangCell",
+    "config": "configs/langcell.yaml",
+    "adapter": "bio/models/adapters/langcell.py",
+    "consistency": "protocol_port",
+    "protocol": "Geneformer V1 排名、CLS 前缀、训练好的投影与 L2 归一化。",
+    "differences": [
+      "CLS/padding collator 移植，规避新版 Transformers tokenizer 接口不兼容。",
+      "拒绝旧代码中的截断对齐和越界 token 截断。"
+    ],
+    "references": [
+      "public_code/LangCell/data_preprocess/preprocess.py",
+      "public_code/LangCell/LangCell-annotation-zeroshot/utils.py"
+    ],
+    "stages": {
+      "data": "V1 排名编码 + CLS 与 padding，无截断式对齐",
+      "loading": "cell_bert + cell_proj.bin，检查骨干缺失",
+      "embedding": "CLS 投影与 L2 归一化"
+    }
+  },
+  {
+    "model": "scFoundation",
+    "config": "configs/scfoundation.yaml",
+    "adapter": "bio/models/adapters/scfoundation.py",
+    "consistency": "protocol_port",
+    "protocol": "19264 基因补零；原始计数 normalize/log1p；t4 提示；四路池化。",
+    "differences": [
+      "单细胞批次大小固定为 1，保持官方逐细胞尾 token/均值池化语义。",
+      "加载 helper 保留严格权重检查，允许 CPU；原先无条件 CUDA。"
+    ],
+    "references": [
+      "public_code/scFoundation/model/get_embedding.py",
+      "public_code/scFoundation/model/load.py"
+    ],
+    "stages": {
+      "data": "19264 基因补齐、normalize/log1p、t4 计数提示",
+      "loading": "严格加载原模型；CPU 设备端口",
+      "embedding": "逐细胞四路池化，3072 维"
+    }
+  },
+  {
+    "model": "scGPT",
+    "config": "configs/scgpt.yaml",
+    "adapter": "bio/models/adapters/scgpt.py",
+    "consistency": "protocol_port",
+    "protocol": "关闭额外 batch 模块，分箱与 CLS，L2 归一化，原生注意力兼容。",
+    "differences": [
+      "运行时使用 cellbench 中的 scgpt 包；公开源码的默认协议已逐项核对，包版本并非源码逐文件拷贝。",
+      "tokenize_and_pad_batch 与官方 DataCollator 的随机采样实现不同；固定 seed 与长度，不宣称逐值相同。"
+    ],
+    "references": [
+      "public_code/scGPT/scgpt/tasks/cell_emb.py",
+      "public_code/scGPT/scgpt/preprocess.py",
+      "public_code/scGPT/scgpt/utils/util.py"
+    ],
+    "stages": {
+      "data": "本地基因映射、normalize/log1p、51 分箱与 1200 长度",
+      "loading": "官方兼容权重映射，验证全部编码器参数",
+      "embedding": "关闭 batch/分类模块，CLS 后 L2 归一化"
+    }
+  },
+  {
+    "model": "scMulan",
+    "config": "configs/scmulan.yaml",
+    "adapter": "bio/models/adapters/scmulan.py",
+    "consistency": "protocol_port_unverified",
+    "protocol": "基因统一、表达分箱、PCT 提示及生成隐藏状态的倒数第二 token。",
+    "differences": [
+      "主检查点缺失，不能实测；仅静态核对。",
+      "严格拒绝预处理后细胞缺失/重排；DataFrame 列按实际基因顺序。"
+    ],
+    "references": [
+      "public_code/scMulan/scMulan/scMulan.py",
+      "public_code/scMulan/scMulan/model/model.py"
+    ],
+    "stages": {
+      "data": "基因名统一与表达分箱；拒绝丢失细胞",
+      "loading": "严格加载；当前主权重缺失",
+      "embedding": "官方 PCT 生成隐藏状态取 -2 token；未实测"
+    }
+  },
+  {
+    "model": "Nicheformer",
+    "config": "configs/nicheformer.yaml",
+    "adapter": "bio/models/adapters/nicheformer.py",
+    "consistency": "hf_port",
+    "protocol": "完整词表顺序、每细胞 1e4 标准化、technology mean、三类上下文 token、去上下文均值。",
+    "differences": [
+      "加载作者 HF 版本的模型代码，接口与 public_code 中 Lightning 版本不同。",
+      "technology mean 缺失即失败；零均值按官方替换为 1，保留官方包含 padding 位置的池化定义。"
+    ],
+    "references": [
+      "public_code/Nicheformer/src/nicheformer/data/dataset.py",
+      "public_code/Nicheformer/src/nicheformer/models/_nicheformer.py"
+    ],
+    "stages": {
+      "data": "全词表、1e4 标准化、technology mean、上下文前缀",
+      "loading": "作者 HF 模型代码；接口异于 Lightning 源码",
+      "embedding": "去前三个上下文位置后均值，与 HF/源码定义一致"
+    }
+  },
+  {
+    "model": "Tabula",
+    "config": "configs/tabula.yaml",
+    "adapter": "bio/models/adapters/tabula.py",
+    "consistency": "native_api_with_attention_compat",
+    "protocol": "官方预处理与模型；SDPA 保留 FlashAttention 参数布局和标准自注意力运算。",
+    "differences": [
+      "不再把 FlashAttention 检查点切到不同的 FastFormer 架构。",
+      "FP32 SDPA 已与 PyTorch 标准多头注意力做数值比较；不声称和 FlashAttention FP16 逐位一致。",
+      "pancreas.pth 的具体训练范围需要单独确认，正式比较需明确检查点。"
+    ],
+    "references": [
+      "public_code/Tabula/tabula/finetune/preprocessor.py",
+      "public_code/Tabula/tabula/model/transfomer/transformer.py",
+      "public_code/Tabula/tabula/model/transfomer/attention.py"
+    ],
+    "stages": {
+      "data": "官方 check_vocab/Preprocessor，保留评测表达空间",
+      "loading": "官方模型 + 等价 SDPA，自注意力权重完整性检查",
+      "embedding": "官方 cell_embed，拒绝 NaN/Inf 清零"
+    }
+  },
+  {
+    "model": "UCE",
+    "config": "configs/uce.yaml",
+    "adapter": "bio/models/adapters/external.py",
+    "consistency": "native_api",
+    "protocol": "官方 AnndataProcessor/采样器/模型与细胞表示。",
+    "differences": [
+      "mmap/meta assign 降低加载内存；仅加载所选物种蛋白资源；不更改网络。"
+    ],
+    "references": [
+      "public_code/UCE/evaluate.py",
+      "public_code/UCE/eval_data.py",
+      "public_code/UCE/model.py"
+    ],
+    "stages": {
+      "data": "官方 AnndataProcessor、染色体/基因采样",
+      "loading": "官方 TransformerModel，mmap/meta 严格赋值",
+      "embedding": "官方 forward 细胞表示"
+    }
+  },
+  {
+    "model": "scPRINT2",
+    "config": "configs/scprint2.yaml",
+    "adapter": "bio/models/adapters/external.py",
+    "consistency": "native_api",
+    "protocol": "官方模型、on_load_checkpoint、Embedder；按 checkpoint 物种词表补齐。",
+    "differences": [
+      "关闭分类与 knn；分块限制内存；这些是显式推理设置。"
+    ],
+    "references": [
+      "public_code/scPRINT2/scprint2/tasks/cell_emb.py",
+      "public_code/scPRINT2/scprint2/model/model.py"
+    ],
+    "stages": {
+      "data": "checkpoint 词表重排；官方 Embedder/Collator",
+      "loading": "官方构造器与 checkpoint hook，严格加载",
+      "embedding": "官方 scprint_emb，关闭 knn/分类，分块"
+    }
+  },
+  {
+    "model": "TranscriptFormer",
+    "config": "configs/transcriptformer.yaml",
+    "adapter": "bio/models/adapters/external.py",
+    "consistency": "native_api",
+    "protocol": "官方 CLI 完成词表处理、模型加载与 embedding 输出。",
+    "differences": [
+      "目前为 1023 上下文，发布最大值 2047；CPU 内存限制下的显式配置。",
+      "没有 assay 元数据时用 unknown，不伪造实际测序技术。"
+    ],
+    "references": [
+      "public_code/TranscriptFormer/src/transcriptformer/cli/inference.py",
+      "public_code/TranscriptFormer/src/transcriptformer/model/inference.py",
+      "public_code/TranscriptFormer/src/transcriptformer/tokenizer/tokenizer.py"
+    ],
+    "stages": {
+      "data": "官方 CLI/tokenizer；缺测序 assay 时 unknown",
+      "loading": "官方推理 CLI，TF-Sapiens",
+      "embedding": "官方 embedding；上下文限制 1023"
+    }
+  },
+  {
+    "model": "CellFM",
+    "config": "configs/cellfm.yaml",
+    "adapter": "bio/models/adapters/external.py",
+    "consistency": "protocol_port_unverified",
+    "protocol": "官方 MindSpore 模型，计数匹配、log-normalization 与 CLS 输出。",
+    "differences": [
+      "依赖可导入，但当前可用内存不足，完整模型推理未验证。",
+      "使用 MindSpore 2.6 CPU 兼容环境；与作者版本的数值一致性未验证。"
+    ],
+    "references": [
+      "public_code/CellFM/model.py",
+      "public_code/CellFM/data_process.py",
+      "public_code/CellFM/config.py"
+    ],
+    "stages": {
+      "data": "公开 data_process 协议的 CPU/MindSpore 端口",
+      "loading": "官方 CellFM 与严格参数加载；内存不足未实测",
+      "embedding": "官方 CLS 路径；未实测"
+    }
+  },
+  {
+    "model": "GeneCompass",
+    "config": "configs/genecompass.yaml",
+    "adapter": "bio/models/adapters/external.py",
+    "consistency": "reconstructed_unverified_equivalence",
+    "protocol": "检查点先验 buffers；中位数缩放/log2 排序；恢复保存配置中的值编码器。",
+    "differences": [
+      "公开 main 与 Small 发布权重不匹配，兼容实现恢复 value encoder 和 1536 宽拼接。",
+      "concat_values_first=false 按保存配置解释为值编码置于先验之后；未验证作者训练实现的逐值等价。"
+    ],
+    "references": [
+      "public_code/GeneCompass/genecompass/modeling_bert.py",
+      "public_code/GeneCompass/genecompass/knowledge_embeddings.py",
+      "public_code/GeneCompass/preprocess/preprocess.py"
+    ],
+    "stages": {
+      "data": "计数/中位数、log2 与排序；使用 checkpoint 先验",
+      "loading": "恢复公开源码缺失的值编码器；144 状态项严格加载",
+      "embedding": "最后一层非 padding 基因均值；原训练实现等价未验证"
+    }
+  },
+  {
+    "model": "scLong",
+    "config": "configs/sclong.yaml",
+    "adapter": "bio/models/adapters/external.py",
+    "consistency": "custom_cell_pooling",
+    "protocol": "官方 DualEncoderSCFM 严格加载；对匹配基因的 merged_decodings 均值池化。",
+    "differences": [
+      "源码零样本脚本调用 get_cell_emb，但当前类未定义该方法。",
+      "当前细胞级均值池化是 benchmark 明确定义，不能标为官方原样细胞 embedding。"
+    ],
+    "references": [
+      "public_code/scLong/performer_pytorch_cont/ding_models.py",
+      "public_code/scLong/zero-shot-batch/scLong_zero_shot.py"
+    ],
+    "stages": {
+      "data": "固定词表补齐、normalize/log1p",
+      "loading": "官方 DualEncoderSCFM，严格加载",
+      "embedding": "匹配基因 decoder 均值是 benchmark 自定义池化"
+    }
+  }
+]

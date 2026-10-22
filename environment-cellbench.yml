@@ -1,0 +1,11 @@
+name: cellbench
+variables:
+  PYTHONNOUSERSITE: "1"
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip<26
+  - setuptools<81
+  - wheel
+# GPU and pip dependencies are installed by scripts/setup_cellbench.sh.

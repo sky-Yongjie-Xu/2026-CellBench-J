@@ -1,0 +1,84 @@
+[
+  {
+    "id": "hlca",
+    "path": "datasets/source_files/hlca.h5ad",
+    "url": "https://datasets.cellxgene.cziscience.com/688185ad-11c2-4172-a53a-f4f1f4076860.h5ad",
+    "size": 5873612847,
+    "source": "https://cellxgene.cziscience.com/collections/6f6d381a-7701-4781-935c-db10d30de293",
+    "dataset_id": "066943a2-fdac-4b29-b348-40cede398e4e",
+    "dataset_version_id": "688185ad-11c2-4172-a53a-f4f1f4076860",
+    "title": "An integrated cell atlas of the human lung in health and disease (core)"
+  },
+  {
+    "id": "heart",
+    "path": "datasets/source_files/heart.h5ad",
+    "url": "https://datasets.cellxgene.cziscience.com/49312f8c-a75a-4672-9c8a-9078acd35bdb.h5ad",
+    "size": 2953098273,
+    "source": "https://cellxgene.cziscience.com/collections/b52eb423-5d0d-4645-b217-e1c6d38b2e72",
+    "dataset_id": "d4e69e01-3ba2-4d6b-a15d-e7048f78f22e",
+    "dataset_version_id": "49312f8c-a75a-4672-9c8a-9078acd35bdb",
+    "title": "All \u2014 Cells of the adult human heart"
+  },
+  {
+    "id": "kidney",
+    "path": "datasets/source_files/kidney.h5ad",
+    "url": "https://datasets.cellxgene.cziscience.com/3ae68468-89f7-4941-a945-f7bae9b2cbea.h5ad",
+    "size": 2188322452,
+    "source": "https://cellxgene.cziscience.com/collections/bcb61471-2a44-4d00-a0af-ff085512674c",
+    "dataset_id": "32b9bdce-2481-4c85-ba1b-6ad5fcea844c",
+    "dataset_version_id": "3ae68468-89f7-4941-a945-f7bae9b2cbea",
+    "title": "Single-cell RNA-seq of the Adult Human Kidney (Version 1.0)"
+  },
+  {
+    "id": "replogleK562",
+    "path": "datasets/source_files/replogleK562.h5ad",
+    "url": "https://zenodo.org/api/records/13350497/files/ReplogleWeissman2022_K562_essential.h5ad/content",
+    "size": 1546729675,
+    "md5": "d8cba17576d1a8afc0f7d71b79cad0f7",
+    "source": "https://zenodo.org/records/13350497",
+    "title": "ReplogleWeissman2022_K562_essential.h5ad"
+  },
+  {
+    "id": "replogleRPE1",
+    "path": "datasets/source_files/replogleRPE1.h5ad",
+    "url": "https://zenodo.org/api/records/13350497/files/ReplogleWeissman2022_rpe1.h5ad/content",
+    "size": 1236886900,
+    "md5": "cc7f1ec50aeb3a3e1b4a6cfa713d80fa",
+    "source": "https://zenodo.org/records/13350497",
+    "title": "ReplogleWeissman2022_rpe1.h5ad"
+  },
+  {
+    "id": "norman_full",
+    "path": "datasets/source_files/norman_full.h5ad",
+    "url": "https://zenodo.org/api/records/13350497/files/NormanWeissman2019_filtered.h5ad/content",
+    "size": 698680199,
+    "md5": "c870e6967d91c017d9da827bab183cd6",
+    "source": "https://zenodo.org/records/13350497",
+    "title": "NormanWeissman2019_filtered.h5ad"
+  },
+  {
+    "id": "adamson_full",
+    "path": "datasets/source_files/adamson_full.h5ad",
+    "url": "https://zenodo.org/api/records/13350497/files/AdamsonWeissman2016_GSM2406681_10X010.h5ad/content",
+    "size": 471286951,
+    "md5": "2fa44ea61a8dd35742af618638ec65fc",
+    "source": "https://zenodo.org/records/13350497",
+    "title": "AdamsonWeissman2016_GSM2406681_10X010.h5ad"
+  },
+  {
+    "id": "seaad_mtg",
+    "path": "datasets/source_files/seaad_mtg.h5ad",
+    "url": "https://sea-ad-single-cell-profiling.s3.amazonaws.com/MTG/RNAseq/SEAAD_MTG_RNAseq_final-nuclei.2026-06-22.h5ad",
+    "size": 32978570763,
+    "source": "https://brain-map.org/consortia/sea-ad/our-data",
+    "title": "SEA-AD MTG final nuclei 2026-06-22"
+  },
+  {
+    "id": "bmmc",
+    "path": "datasets/source_files/bmmc.h5ad.gz",
+    "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE194nnn/GSE194122/suppl/GSE194122_openproblems_neurips2021_cite_BMMC_processed.h5ad.gz",
+    "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE194122",
+    "title": "NeurIPS2021 BMMC CITE-seq (RNA will be selected)",
+    "compression": "gzip"
+  }
+]

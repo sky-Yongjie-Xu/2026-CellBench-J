@@ -1,0 +1,22 @@
+program: main.py
+parameters:
+  dataset_name:
+    values:
+    - pbmc12k
+  task:
+    values:
+    - embedding_extraction
+  seed:
+    values:
+    - 41
+  gpu:
+    values:
+    - 0
+  cfgs:
+    values:
+    - configs/uce.yaml
+    - configs/scprint2.yaml
+    - configs/transcriptformer.yaml
+    - configs/cellfm.yaml
+    - configs/genecompass.yaml
+    - configs/sclong.yaml

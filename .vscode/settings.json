@@ -1,0 +1,12 @@
+{
+    "python.defaultInterpreterPath": "/root/anaconda3/envs/cellbench/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "none",
+    "python.linting.mypyEnabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.defaultFormatter": "GitHub.copilot"
+}

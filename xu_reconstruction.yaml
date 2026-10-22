@@ -1,0 +1,35 @@
+program: main.py
+parameters:
+  dataset_name:
+    values:
+    - pbmc12k
+    - hPancreas
+    - cortex
+    - ms
+    - liver
+    - Zheng68k
+    - lung
+    - immune
+  seed:
+    values:
+    - 41
+    - 42
+    - 43
+    - 44
+    - 45
+  topk:
+    values:
+    - 100
+    - 300
+    - 500
+    - 700
+    - 900
+  task:
+    values:
+    - reconstruction
+  phase:
+    values:
+    - adapter_finetuning
+  cfgs:
+    values:
+    - ./configs/nicheformer.yaml

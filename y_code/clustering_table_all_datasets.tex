@@ -1,0 +1,56 @@
+\begin{table*}[htbp]
+
+  \centering
+
+  \scriptsize
+
+  \caption{Performance of various models on clustering task (AvgBio, Acc).}
+
+  \label{tab:clustering_performance_all}
+
+  \setlength{\tabcolsep}{2pt}
+
+  \begin{tabular}{l|cc|cc|cc|cc|cc}
+
+    \toprule
+    \multirow{2}{*}{Model}
+      & \multicolumn{2}{c}{PBMC12k} & \multicolumn{2}{c}{hPancreas} & \multicolumn{2}{c}{Cortex} & \multicolumn{2}{c}{MS} & \multicolumn{2}{c}{Liver} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+      & AvgBio & Acc & AvgBio & Acc & AvgBio & Acc & AvgBio & Acc & AvgBio & Acc \\
+    \midrule
+
+    PCA      & 67.56 & 79.58 & \cellcolor{gray!25}{69.68} & \cellcolor{gray!25}{77.56} & 86.32 & 97.29 & 44.92 & 49.18 & 56.71 & 71.48 \\
+    UMAP      & 58.59 & 70.51 & 65.86 & 56.57 & 85.35 & 94.28 & 33.31 & 36.53 & 52.70 & 48.11 \\
+    scVI      & 71.68 & 89.12 & 57.27 & 60.63 & 84.62 & \cellcolor{gray!25}{98.75} & \cellcolor{gray!25}{58.56} & \cellcolor{gray!25}{64.76} & 59.62 & 70.92 \\
+    CellPLM      & \cellcolor{gray!25}{80.62} & \cellcolor{gray!25}{92.51} & 64.17 & 76.16 & \cellcolor{gray!25}{87.24} & 97.02 & 52.94 & 55.90 & \cellcolor{gray!25}{67.99} & \cellcolor{gray!25}{80.98} \\
+    Geneformer      & 59.50 & 74.75 & 33.78 & 43.22 & 72.71 & 93.77 & 32.23 & 34.38 & 28.08 & 30.17 \\
+    LangCell      & 26.77 & 18.22 & 31.64 & 37.64 & 77.33 & 94.30 & 24.10 & 23.39 & 26.70 & 21.01 \\
+    scGPT      & 55.59 & 71.77 & 45.29 & 52.58 & 84.56 & 96.64 & 42.47 & 38.37 & 61.18 & 79.38 \\
+    \cellcolor{gray!25}\textbf{scMulan}      & 69.55 & 80.18 & 56.81 & 58.90 & 68.87 & 74.56 & 43.00 & 49.40 & 38.86 & 33.60 \\
+    \cellcolor{gray!25}\textbf{scFoundation}      & 71.81 & 84.11 & 47.95 & 45.04 & 77.44 & 85.77 & 46.41 & 47.21 & 61.46 & 76.48 \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.3cm}
+
+  \begin{tabular}{l|cc|cc|cc|cc}
+
+    \toprule
+    \multirow{2}{*}{Model}
+      & \multicolumn{2}{c}{Zheng68k} & \multicolumn{2}{c}{Lung} & \multicolumn{2}{c}{Covid} & \multicolumn{2}{c}{Immune} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+      & AvgBio & Acc & AvgBio & Acc & AvgBio & Acc & AvgBio & Acc \\
+    \midrule
+
+    PCA      & 41.90 & 56.83 & 71.27 & 89.47 & 44.76 & 46.73 & 48.17 & 41.82 \\
+    UMAP      & 32.73 & 38.01 & 65.44 & 61.52 & 40.30 & 38.28 & 44.76 & 41.51 \\
+    scVI      & 41.16 & 55.31 & 71.28 & 89.11 & 43.83 & 40.01 & 51.79 & 46.76 \\
+    CellPLM      & \cellcolor{gray!25}{42.60} & \cellcolor{gray!25}{57.16} & \cellcolor{gray!25}{79.12} & \cellcolor{gray!25}{92.71} & \cellcolor{gray!25}{48.62} & 48.52 & \cellcolor{gray!25}{58.63} & \cellcolor{gray!25}{63.13} \\
+    Geneformer      & 39.17 & 47.14 & 36.97 & 44.98 & 34.05 & 34.19 & 41.03 & 39.71 \\
+    LangCell      & 33.08 & 36.92 & 34.21 & 55.38 & 26.30 & 21.93 & 35.22 & 28.33 \\
+    scGPT      & 37.68 & 43.83 & 70.98 & 88.25 & 46.46 & \cellcolor{gray!25}{51.46} & 50.59 & 49.01 \\
+    \cellcolor{gray!25}\textbf{scMulan}      & 36.16 & 42.80 & 53.27 & 56.87 & 44.53 & 39.59 & 45.88 & 36.25 \\
+    \cellcolor{gray!25}\textbf{scFoundation}      & 39.59 & 51.54 & 70.35 & 80.58 & 46.45 & 46.28 & 47.71 & 42.06 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

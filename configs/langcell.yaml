@@ -1,0 +1,33 @@
+data_cfg:
+  dataset_name: pbmc12k
+  data_path: datasets
+  root_path: datasets
+  num_workers: 1
+  label_fields:
+  - cell_type
+  output_directory: /root/commusim/benchmark/bio/out
+  output_prefix: MS
+  cell_state_dict:
+    state_key: celltype
+    states: all
+  rare_threshold: 0
+  max_ncells: null
+  max_ncells_per_class: null
+  gene_class_dict: null
+  training_args: null
+  freeze_layers: null
+  hvg: 3000
+  test_dataset_name: pbmc12k
+model_cfg:
+  model: LangCell
+  token_dictionary_file: weights/LangCell/token_dictionary_gc30M.pkl
+  gene_median_file: weights/LangCell/gene_median_dictionary_gc30M.pkl
+  tasks: cluster
+  pretrain_prefix: 20230926_85M
+  model_type: GeneClassifier
+  out_dim: 18
+  ckpt: weights/LangCell
+  weights_dir: weights/LangCell
+  source_dir: public_code/LangCell
+  expression_layer: auto
+  inference_batch_size: 8

@@ -1,0 +1,42 @@
+[
+  {
+    "model": "GeneCompass",
+    "variant": "Base",
+    "path": "GeneCompass/GeneCompass_Base/config.json",
+    "url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=1f730c6474deaa7393cdb2fe8e6a4c24",
+    "official_download_url": "https://china.scidb.cn/download?fileId=1f730c6474deaa7393cdb2fe8e6a4c24&shortLink=IFNvMr",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y",
+    "expected_bytes": 850,
+    "expected_md5": "079a73a36316add7db0b4159dccdcbc4"
+  },
+  {
+    "model": "GeneCompass",
+    "variant": "Base",
+    "path": "GeneCompass/GeneCompass_Base/generation_config.json",
+    "url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=d7e2a816310702a78f167f313ac9b312",
+    "official_download_url": "https://china.scidb.cn/download?fileId=d7e2a816310702a78f167f313ac9b312&shortLink=IFNvMr",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y",
+    "expected_bytes": 90,
+    "expected_md5": "a19745d9fa4bc315dd14703da7cc06c2"
+  },
+  {
+    "model": "GeneCompass",
+    "variant": "Base",
+    "path": "GeneCompass/GeneCompass_Base/pytorch_model.bin",
+    "url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=f1f42a9e79f1980fa20b367c23f17bf0",
+    "official_download_url": "https://china.scidb.cn/download?fileId=f1f42a9e79f1980fa20b367c23f17bf0&shortLink=IFNvMr",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y",
+    "expected_bytes": 1152161193,
+    "expected_md5": "77719f3af27b3d3359032bf4ae315652"
+  },
+  {
+    "model": "GeneCompass",
+    "variant": "Base",
+    "path": "GeneCompass/GeneCompass_Base/training_args.bin",
+    "url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=3a963e2830b95feed7e0dc2f6ec1a61f",
+    "official_download_url": "https://china.scidb.cn/download?fileId=3a963e2830b95feed7e0dc2f6ec1a61f&shortLink=IFNvMr",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y",
+    "expected_bytes": 4219,
+    "expected_md5": "d446e3f18497732e19544b667e5a5671"
+  }
+]

@@ -1,0 +1,139 @@
+[
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/GeneCompass_Small/config.json",
+    "url": "https://www.scidb.cn/api/sdb-download-service/downloadFileMole?fileId=3f741d44e4c5874c8243d5d270f31d22",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/GeneCompass_Small/generation_config.json",
+    "url": "https://download.scidb.cn/download?fileId=2c1b95478d216ad94c30e6ee95f4c1ab&path=/V1/GeneCompass_Small/generation_config.json&shortLink=IFNvMr&fileName=generation_config.json",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/GeneCompass_Small/pytorch_model.bin",
+    "url": "https://download.scidb.cn/download?fileId=a72d7fd6739b2469985a70ef37736d89&path=/V1/GeneCompass_Small/pytorch_model.bin&shortLink=IFNvMr&fileName=pytorch_model.bin",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/GeneCompass_Small/training_args.bin",
+    "url": "https://download.scidb.cn/download?fileId=013b870fb44562d3b832bb196ad86afd&path=/V1/GeneCompass_Small/training_args.bin&shortLink=IFNvMr&fileName=training_args.bin",
+    "source_url": "https://www.scidb.cn/en/anonymous/SUZOdk1y"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/PECA2vec/human_PECA_vec.pickle",
+    "url": "https://drive.google.com/uc?id=1v3RIwkSIVVHnrdSKnFD76KbUYfD-Y5SR",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/PECA2vec/mouse_PECA_vec.pickle",
+    "url": "https://drive.google.com/uc?id=1u15K52oh-qEELMwLz95RdEwjVI1scxha",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_co_express_emb/Human_dim_768_gene_28291_random.pickle",
+    "url": "https://drive.google.com/uc?id=1NeRHMQhL-UBG4hzaAu192LB1mrJ0EeNx",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_co_express_emb/Mouse_dim_768_gene_27444_random.pickle",
+    "url": "https://drive.google.com/uc?id=1ibSXQ9D3jGW-8zeu5BAtx5fUKnElPgSI",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_family/Human_dim_768_gene_28291_random.pickle",
+    "url": "https://drive.google.com/uc?id=141cGrkBMX6Rf_b2DNXXQnHu_c0r3_OPx",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_family/Mouse_dim_768_gene_27934_random.pickle",
+    "url": "https://drive.google.com/uc?id=1UqXNInQsLB6WU5O7KW5hAdRkvoQSsYPT",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_list/Gene_id_name_dict_human_mouse.pickle",
+    "url": "https://drive.google.com/uc?id=18qBuAgHXbQK51_oN9ScRgkePs67J-NFE",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_list/human_gene_names.txt",
+    "url": "https://drive.google.com/uc?id=1TjBzIpfg7Ufrf37AiGJ3KN8udhySy9eq",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/gene_list/mouse_gene_names.txt",
+    "url": "https://drive.google.com/uc?id=1FetBoZ2SQ2Fq5k0yAvT9P9VS9pHGIQrq",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/h&m_token1000W.pickle",
+    "url": "https://drive.google.com/uc?id=1IbVwasIzCxIp9QWBzXIAcMiQpKK0rhH0",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/homologous_hm_token.pickle",
+    "url": "https://drive.google.com/uc?id=17XMLCvQg8xEzsqjWW5MEe6wVs-UITfhV",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/human_mouse_tokens.pickle",
+    "url": "https://drive.google.com/uc?id=1nwGVhi7Sl-zS_XqSt6_CJQYSU5PPEyGE",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/promoter_emb/human_emb_768.pickle",
+    "url": "https://drive.google.com/uc?id=1pbaRN3NJH2hQNkrfvbvkUj8GI5ELzqeq",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/promoter_emb/mouse_emb_768.pickle",
+    "url": "https://drive.google.com/uc?id=1_cHD0pWkgLi45HHDq888fQtSYDTnWzaF",
+    "gdrive": true,
+    "source_url": "https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/prior_knowledge/tongyuan_h&m_token.pickle",
+    "url": "https://raw.githubusercontent.com/xCompass-AI/GeneCompass/59e5e485cb940038a7db040c2f31c8a2ce76ba53/prior_knowledge/tongyuan_h%26m_token.pickle"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/scdata/dict/human_gene_median_after_filter.pickle",
+    "url": "https://raw.githubusercontent.com/xCompass-AI/GeneCompass/59e5e485cb940038a7db040c2f31c8a2ce76ba53/scdata/dict/human_gene_median_after_filter.pickle"
+  },
+  {
+    "model": "GeneCompass",
+    "path": "GeneCompass/scdata/dict/human_mouse_tokens.pickle",
+    "url": "https://raw.githubusercontent.com/xCompass-AI/GeneCompass/59e5e485cb940038a7db040c2f31c8a2ce76ba53/scdata/dict/human_mouse_tokens.pickle"
+  }
+]

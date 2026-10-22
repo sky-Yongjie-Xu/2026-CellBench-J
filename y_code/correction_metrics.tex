@@ -1,0 +1,74 @@
+% This file is intended to be directly included in a paper (e.g., via \input{y_code/correction_metrics}).
+
+\section{Batch-effect correction metrics}
+\label{sec:batch_effect_metrics}
+
+Let $\{x_i\}_{i=1}^n \subset \mathbb{R}^d$ denote the learned cell embeddings, where $n$ is the number of cells and $d$ is the embedding dimension.
+Let $b_i \in \{1,\dots,B\}$ be the batch label of cell $i$ (e.g., donor, technology, or sample), and let $c_i \in \{1,\dots,C\}$ be the biological label (cell type).
+All distances are computed in the embedding space using the Euclidean metric $d(x_i,x_j)=\lVert x_i-x_j \rVert_2$.
+
+Our goal is to evaluate whether embeddings are \emph{batch-invariant} while preserving \emph{biological structure}. Intuitively, a good representation should make cells of the same type cluster together regardless of their batch of origin.
+
+\paragraph{ASW-based score (batch mixing vs. cell-type separation).}
+For a label assignment $y_i\in\{1,\dots,K\}$ (e.g., $y=b$ for batch or $y=c$ for cell type), the silhouette of point $i$ is
+\begin{equation}
+  s(i) = \frac{b(i)-a(i)}{\max\{a(i),b(i)\}}\in[-1,1],
+\end{equation}
+where $a(i)$ is the mean distance from $x_i$ to points with the same label, and $b(i)$ is the minimum (over other labels) of the mean distance from $x_i$ to that label.
+The average silhouette width is
+\begin{equation}
+  \mathrm{ASW}(y) = \frac{1}{n}\sum_{i=1}^n s(i).
+\end{equation}
+We compute $\mathrm{ASW}_{\mathrm{batch}}=\mathrm{ASW}(b)$ and $\mathrm{ASW}_{\mathrm{ct}}=\mathrm{ASW}(c)$, normalize them to $[0,1]$ by
+\begin{equation}
+  A_b = \frac{\mathrm{ASW}_{\mathrm{batch}}+1}{2},\qquad A_c = \frac{\mathrm{ASW}_{\mathrm{ct}}+1}{2},
+\end{equation}
+and report a single combined score via a harmonic mean:
+\begin{equation}
+  \mathrm{ASW}_{\mathrm{F}} = \frac{2(1-A_b)A_c}{(1-A_b)+A_c+\varepsilon}.
+\end{equation}
+\textbf{Intuition:} $1-A_b$ rewards embeddings where batch labels are hard to separate (good integration), while $A_c$ rewards embeddings that keep cell types separable (biological conservation). Thus, larger $\mathrm{ASW}_{\mathrm{F}}$ indicates better overall correction quality.
+
+\paragraph{iLISI (local batch diversity).}
+Let $\mathcal{N}_k(i)$ be the $k$ nearest neighbors of cell $i$ in embedding space.
+Define the local batch proportions in this neighborhood as
+\begin{equation}
+  p_{it} = \frac{1}{k}\sum_{j\in\mathcal{N}_k(i)} \mathbf{1}[b_j=t].
+\end{equation}
+The local inverse Simpson index is
+\begin{equation}
+  \mathrm{LISI}_i = \frac{1}{\sum_{t=1}^B p_{it}^2},\qquad \mathrm{iLISI}=\frac{1}{n}\sum_{i=1}^n \mathrm{LISI}_i.
+\end{equation}
+\textbf{Intuition:} iLISI measures how many batches are effectively present in a typical local neighborhood. Larger iLISI indicates stronger local mixing of batches.
+
+\paragraph{ARI (biological conservation).}
+We quantify whether the biological structure is preserved by comparing the biological partition $U$ induced by cell-type labels with a partition $V$ obtained by clustering the embeddings (e.g., $k$-means).
+Let $n_{ij}=|U_i\cap V_j|$ be the contingency table, $a_i=\sum_j n_{ij}$, $b_j=\sum_i n_{ij}$, and $n=\sum_{ij}n_{ij}$.
+The adjusted Rand index is
+\begin{equation}
+  \mathrm{ARI}=
+  \frac{\sum_{ij}\binom{n_{ij}}{2} - \frac{\sum_i\binom{a_i}{2}\sum_j\binom{b_j}{2}}{\binom{n}{2}}}
+  {\frac{1}{2}\left[\sum_i\binom{a_i}{2}+\sum_j\binom{b_j}{2}\right] - \frac{\sum_i\binom{a_i}{2}\sum_j\binom{b_j}{2}}{\binom{n}{2}}}.
+\end{equation}
+\textbf{Intuition:} ARI measures agreement between embedding-derived clusters and true cell types, corrected for chance. Larger ARI indicates better preservation of biological identity.
+
+\paragraph{kBET (neighborhood batch-composition test).}
+kBET tests whether batch composition in local neighborhoods matches the global batch distribution.
+Let the global batch proportions be
+\begin{equation}
+  \pi_t = \frac{1}{n}\sum_{i=1}^n \mathbf{1}[b_i=t],
+\end{equation}
+and define observed neighbor counts $O_{it}=\sum_{j\in\mathcal{N}_k(i)}\mathbf{1}[b_j=t]$ and expected counts $E_{it}=k\pi_t$.
+Using a chi-square approximation, we compute
+\begin{equation}
+  \chi_i^2 = \sum_{t=1}^B \frac{(O_{it}-E_{it})^2}{E_{it}+\varepsilon},\qquad p_i = 1 - F_{\chi^2(B-1)}(\chi_i^2),
+\end{equation}
+and accept the null (good mixing) if $p_i>\alpha$ (e.g., $\alpha=0.05$).
+We report the acceptance rate
+\begin{equation}
+  \mathrm{kBET} = \frac{1}{n}\sum_{i=1}^n \mathbf{1}[p_i>\alpha].
+\end{equation}
+\textbf{Intuition:} kBET is a hypothesis-testing view of batch mixing: larger kBET means more cells have neighborhoods consistent with global batch proportions.
+
+\paragraph{Practical note.}
+All metrics are reported such that \textbf{larger is better}. In practice, a method that improves batch mixing (high iLISI/kBET) but destroys biological structure (low ARI) is considered over-corrected; conversely, a method with high ARI but low iLISI/kBET is under-corrected. The combined $\mathrm{ASW}_{\mathrm{F}}$ is designed to capture this trade-off.

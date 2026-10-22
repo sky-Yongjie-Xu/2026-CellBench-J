@@ -1,0 +1,29 @@
+program: main.py
+parameters:
+  dataset_name:
+    values:
+    - adamson
+    - norman
+  seed:
+    values:
+    - 41
+    - 42
+    - 43
+    - 44
+    - 45
+  topk:
+    values:
+    - 1
+    - 3
+    - 5
+    - 7
+    - 9
+  task:
+    values:
+    - perturbation
+  phase:
+    values:
+    - adapter_finetuning
+  cfgs:
+    values:
+    - ./configs/nicheformer.yaml

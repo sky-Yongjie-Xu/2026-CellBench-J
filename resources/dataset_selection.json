@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-21",
+  "core_added": [
+    "bmmc",
+    "hlca",
+    "heart",
+    "kidney",
+    "seaad_mtg",
+    "replogleK562",
+    "replogleRPE1"
+  ],
+  "core_replaced": [
+    "adamson",
+    "norman"
+  ],
+  "development": [
+    "pbmc12k"
+  ],
+  "supplementary": {
+    "cortex": "Single donor; insufficient for donor-generalization claims",
+    "uc_epi": "Only 1361 provided genes; restricted gene coverage",
+    "uc_imm": "Only 1068 provided genes; restricted gene coverage"
+  },
+  "retained_pending_counts": {
+    "hPancreas": "Current counts layer contains fractional values; reliable raw counts source still needed",
+    "immune": "Current local matrix is normalized; raw counts still needed",
+    "ms": "Only 3000 genes and normalized expression; str_batch has one level",
+    "Zheng68k": "Current local matrix is normalized; raw counts still needed"
+  },
+  "retired": [
+    {
+      "date": "2026-10-21",
+      "path": "datasets/covid.h5ad",
+      "size": 3037074092,
+      "reason": "Current local version has extensive missing donor metadata and cell-type/batch confounding; retired from the core benchmark after HLCA counts subset validation.",
+      "replacement": "datasets/hlca.h5ad"
+    }
+  ],
+  "preparation": {
+    "limit": 30000,
+    "seed": 41,
+    "atlas_strata": [
+      "donor_id",
+      "celltype"
+    ],
+    "perturbation_strata": [
+      "celltype",
+      "condition"
+    ],
+    "replogle_control_fraction": 0.1,
+    "genes": "all RNA features supplied by each source; not necessarily complete transcriptome"
+  },
+  "protocol_limits": [
+    "Subsets balance observed strata and do not preserve population proportions",
+    "Pretraining corpus overlap is not established",
+    "Current task splits are not automatically changed to donor/study/perturbation-held-out splits"
+  ],
+  "sources": "resources/dataset_assets.json",
+  "recipes": "resources/dataset_recipes.json"
+}

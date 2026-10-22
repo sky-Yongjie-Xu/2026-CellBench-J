@@ -1,0 +1,191 @@
+{
+  "hlca": {
+    "label": [
+      "ann_level_3",
+      "cell_type",
+      "celltype"
+    ],
+    "donor": [
+      "donor_id",
+      "donor"
+    ],
+    "batch": [
+      "dataset",
+      "dataSource",
+      "donor_id",
+      "donor"
+    ]
+  },
+  "heart": {
+    "label": [
+      "cell_type",
+      "celltype"
+    ],
+    "donor": [
+      "donor_id",
+      "donor"
+    ],
+    "batch": [
+      "dataset",
+      "dataSource",
+      "donor_id",
+      "donor"
+    ]
+  },
+  "kidney": {
+    "label": [
+      "subclass.l1",
+      "celltype",
+      "cell_type"
+    ],
+    "donor": [
+      "donor_id",
+      "donor"
+    ],
+    "batch": [
+      "dataset",
+      "dataSource",
+      "donor_id",
+      "donor"
+    ]
+  },
+  "seaad_mtg": {
+    "label": [
+      "Subclass",
+      "subclass",
+      "cell_type"
+    ],
+    "donor": [
+      "Donor ID",
+      "donor_id"
+    ],
+    "batch": [
+      "Donor ID",
+      "donor_id"
+    ],
+    "obs_columns": [
+      "Class",
+      "Subclass",
+      "Supertype",
+      "Donor ID",
+      "donor_id",
+      "subclass",
+      "cell_type",
+      "Sex",
+      "Age at Death",
+      "Brain Region",
+      "Overall AD neuropathological Change",
+      "assay",
+      "assay_ontology_term_id",
+      "suspension_type"
+    ]
+  },
+  "bmmc": {
+    "label": [
+      "cell_type",
+      "celltype"
+    ],
+    "donor": [
+      "DonorID",
+      "DonorNumber"
+    ],
+    "batch": [
+      "batch"
+    ],
+    "rna_feature_columns": [
+      "feature_types",
+      "feature_type"
+    ],
+    "rna_feature_values": [
+      "GEX",
+      "Gene Expression"
+    ]
+  },
+  "replogleK562": {
+    "label": [
+      "celltype",
+      "cell_type",
+      "cell_line"
+    ],
+    "condition": [
+      "perturbation",
+      "condition",
+      "gene"
+    ],
+    "controls": [
+      "control",
+      "ctrl",
+      "non-targeting",
+      "non-targeting+ctrl",
+      "NT",
+      "NegCtrl"
+    ],
+    "perturbation": true,
+    "control_fraction": 0.1
+  },
+  "replogleRPE1": {
+    "label": [
+      "celltype",
+      "cell_type",
+      "cell_line"
+    ],
+    "condition": [
+      "perturbation",
+      "condition",
+      "gene"
+    ],
+    "controls": [
+      "control",
+      "ctrl",
+      "non-targeting",
+      "non-targeting+ctrl",
+      "NT",
+      "NegCtrl"
+    ],
+    "perturbation": true,
+    "control_fraction": 0.1
+  },
+  "norman_full": {
+    "label": [
+      "celltype",
+      "cell_type",
+      "cell_line"
+    ],
+    "condition": [
+      "perturbation",
+      "condition",
+      "gene"
+    ],
+    "controls": [
+      "control",
+      "ctrl",
+      "non-targeting",
+      "non-targeting+ctrl",
+      "NT",
+      "NegCtrl"
+    ],
+    "perturbation": true,
+    "filename": "norman.h5ad"
+  },
+  "adamson_full": {
+    "label": [
+      "celltype",
+      "cell_type",
+      "cell_line"
+    ],
+    "condition": [
+      "perturbation",
+      "condition",
+      "gene"
+    ],
+    "controls": [
+      "63(mod)_pBA580",
+      "Gal4-4(mod)_pBA582",
+      "62(mod)_pBA581"
+    ],
+    "perturbation": true,
+    "filename": "adamson.h5ad",
+    "condition_split": "_",
+    "control_mapping_source": "https://scperteval.readthedocs.io/en/v0.2.0/notebooks/02_preparing_a_dataset.html"
+  }
+}
