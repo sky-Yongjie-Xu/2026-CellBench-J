@@ -45,25 +45,25 @@
 
 | 模型 | 类型 | 检查点 / 版本 | 嵌入维度* | 后端环境 |
 |---|---|---|---|---|
-| CellPLM | 基础模型 | 官方 OmicsFormer + EmbedderHead | 512 | 主环境 |
-| Geneformer | 基础模型 | V1 30M · BertForMaskedLM | 512 | 主环境 |
-| LangCell | 基础模型 | cell_bert + cell_proj.bin | 256 | 主环境 |
-| scFoundation | 基础模型 | 严格加载 · 19264 基因词表 | 3072 | 主环境 |
-| scGPT | 基础模型 | 官方兼容权重 | 512 | 主环境 |
-| scMulan | 基础模型 | 主权重缺失（`check_resources` 可查） | — | 主环境 |
-| Nicheformer | 基础模型 | 作者 HF 模型 | 512 | 主环境 |
-| Tabula | 基础模型 | 官方模型 + SDPA 等价 | 192 | 主环境 |
+| [CellPLM](https://github.com/OmicsML/CellPLM) | 基础模型 | 官方 OmicsFormer + EmbedderHead | 512 | 主环境 |
+| [Geneformer](https://huggingface.co/ctheodoris/Geneformer) | 基础模型 | V1 30M · BertForMaskedLM | 512 | 主环境 |
+| [LangCell](https://github.com/PharMolix/LangCell) | 基础模型 | cell_bert + cell_proj.bin | 256 | 主环境 |
+| [scFoundation](https://github.com/biomap-research/scFoundation) | 基础模型 | 严格加载 · 19264 基因词表 | 3072 | 主环境 |
+| [scGPT](https://github.com/bowang-lab/scGPT) | 基础模型 | 官方兼容权重 | 512 | 主环境 |
+| [scMulan](https://github.com/SuperBianC/scMulan) | 基础模型 | 主权重缺失（`check_resources` 可查） | — | 主环境 |
+| [Nicheformer](https://github.com/theislab/nicheformer) | 基础模型 | 作者 HF 模型 | 512 | 主环境 |
+| [Tabula](https://github.com/aristoteleo/tabula) | 基础模型 | 官方模型 + SDPA 等价 | 192 | 主环境 |
 | [UCE](https://github.com/snap-stanford/UCE) | 前沿模型 | 4 层 UCE | 1280 | 主环境（GPU 自动） |
 | [scPRINT2](https://github.com/cantinilab/scPRINT-2) | 前沿模型 | small-v2.ckpt | 424 | 独立环境 |
 | [TranscriptFormer](https://github.com/czi-ai/transcriptformer) | 前沿模型 | TF-Sapiens（上下文 1023） | 2048 | 独立 Python 3.11 · CPU |
 | [CellFM](https://github.com/biomed-AI/CellFM) | 前沿模型 | base_weight.ckpt | — | 独立 MindSpore · CPU |
 | [GeneCompass](https://github.com/xCompass-AI/GeneCompass) | 前沿模型 | GeneCompass-Small（6 层） | 256 | 独立 Transformers 4.30 |
 | [scLong](https://github.com/BaiDing1234/scLong) | 前沿模型 | 官方 1B | 200 | 主环境 · CPU |
-| PCA | 基线 | 在当前数据上拟合（StatisticalAdapter） | 256 | 主环境 |
-| UMAP | 基线 | 在当前数据上拟合（StatisticalAdapter） | — | 主环境 |
-| scVI | 基线 | 在当前数据上拟合（需真实计数） | — | 主环境 |
+| [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) | 基线 | 在当前数据上拟合（StatisticalAdapter） | 256 | 主环境 |
+| [UMAP](https://github.com/lmcinnes/umap) | 基线 | 在当前数据上拟合（StatisticalAdapter） | — | 主环境 |
+| [scVI](https://github.com/scverse/scvi-tools) | 基线 | 在当前数据上拟合（需真实计数） | — | 主环境 |
 
-\* 维度来自两细胞 smoke test，用于验证接口契约，不代表全量评测结果。六个前沿模型的官方源码 commit 固定在 `scripts/download_public_code.py`，适配器拒绝不支持的版本。
+\* 维度来自两细胞 smoke test，用于验证接口契约，不代表全量评测结果。全部 14 个模型的官方源码地址与固定 commit 记录在 `public_code/sources.json`（下载入口 `scripts/download_public_code.py`），适配器拒绝不支持的版本。
 
 ## 🧪 任务与指标（v2 协议）
 
